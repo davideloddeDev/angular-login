@@ -1,0 +1,93 @@
+<div class="login-container" 
+     [class]="'login-theme-' + finalConfig.theme" 
+     [ngClass]="customCssClass || finalConfig.customCssClass">
+  
+  <!-- Header con logo e titolo -->
+  <div class="login-header">
+    <img *ngIf="finalConfig.logoUrl" 
+         [src]="finalConfig.logoUrl" 
+         [alt]="finalConfig.title + ' Logo'" 
+         class="login-logo">
+    <h2 class="login-title">{{ finalConfig.title }}</h2>
+  </div>
+
+  <!-- Form di login -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    
+    <!-- Campo Username -->
+    <div class="form-group">
+      <label for="username" class="form-label">{{ finalConfig.usernameLabel }}</label>
+      <input 
+        type="text" 
+        id="username"
+        formControlName="username"
+        class="form-control"
+        [class.is-invalid]="isFieldInvalid('username')"
+        [disabled]="disabled || isLoading"
+        placeholder="{{ finalConfig.usernameLabel }}">
+      <div *ngIf="isFieldInvalid('username')" class="invalid-feedback">
+        {{ getFieldError('username') }}
+      </div>
+    </div>
+
+    <!-- Campo Password -->
+    <div class="form-group">
+      <label for="password" class="form-label">{{ finalConfig.passwordLabel }}</label>
+      <input 
+        type="password" 
+        id="password"
+        formControlName="password"
+        class="form-control"
+        [class.is-invalid]="isFieldInvalid('password')"
+        [disabled]="disabled || isLoading"
+        placeholder="{{ finalConfig.passwordLabel }}">
+      <div *ngIf="isFieldInvalid('password')" class="invalid-feedback">
+        {{ getFieldError('password') }}
+      </div>
+    </div>
+
+    <!-- Remember Me -->
+    <div *ngIf="finalConfig.showRememberMe" class="form-group form-check">
+      <input 
+        type="checkbox" 
+        id="rememberMe"
+        formControlName="rememberMe"
+        class="form-check-input"
+        [disabled]="disabled || isLoading">
+      <label for="rememberMe" class="form-check-label">Ricordami</label>
+    </div>
+
+    <!-- Messaggio di errore -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+      <div *ngIf="remainingAttempts > 0 && remainingAttempts < (finalConfig.maxRetries || 3)" class="mt-2">
+        <small>Tentativi rimanenti: {{ remainingAttempts }}</small>
+      </div>
+    </div>
+
+    <!-- Pulsante di login -->
+    <button 
+      type="submit" 
+      class="btn btn-primary btn-login"
+      [disabled]="disabled || isLoading || (finalConfig.enableValidation && loginForm.invalid)">
+      
+      <span *ngIf="isLoading && finalConfig.showLoadingSpinner" class="spinner-border spinner-border-sm me-2" role="status">
+        <span class="visually-hidden">Caricamento...</span>
+      </span>
+      
+      {{ isLoading ? 'Login in corso...' : finalConfig.loginButtonText }}
+    </button>
+
+    <!-- Link password dimenticata -->
+    <div *ngIf="finalConfig.showForgotPassword" class="forgot-password-container">
+      <button 
+        type="button" 
+        class="btn btn-link forgot-password-link"
+        (click)="onForgotPassword()"
+        [disabled]="disabled || isLoading">
+        Password dimenticata?
+      </button>
+    </div>
+
+  </form>
+</div>

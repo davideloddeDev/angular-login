@@ -1,0 +1,31 @@
+{
+  "name": "@davideloddedev/angular-login",
+  "version": "1.0.0",
+  "description": "Componente Angular riutilizzabile per il login con integrazione backend configurabile",
+  "author": "Davide Lodde",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davideloddeDev/angular-login.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davideloddeDev/angular-login/issues"
+  },
+  "homepage": "https://github.com/davideloddeDev/angular-login#readme",
+  "keywords": [
+    "angular",
+    "login", 
+    "component",
+    "authentication",
+    "reusable",
+    "standalone"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^20.1.0",
+    "@angular/core": "^20.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

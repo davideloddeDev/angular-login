@@ -1,0 +1,70 @@
+<div class="demo-app">
+  <header class="demo-header">
+    <h1>{{ title }}</h1>
+    <p>Esempio di integrazione del componente login riutilizzabile</p>
+  </header>
+
+  <main class="demo-main">
+    
+    <!-- Light Theme Demo -->
+    <section class="demo-section">
+      <h2>🌞 Light Theme</h2>
+      <p>Tema chiaro con configurazione base</p>
+      <div class="demo-container light-demo">
+        <lib-login 
+          [config]="lightConfig"
+          (loginSuccess)="onLoginSuccess($event)"
+          (loginError)="onLoginError($event)"
+          (forgotPassword)="onForgotPassword($event)">
+        </lib-login>
+      </div>
+    </section>
+
+    <!-- Dark Theme Demo -->
+    <section class="demo-section">
+      <h2>🌙 Dark Theme</h2>
+      <p>Tema scuro senza "Remember Me"</p>
+      <div class="demo-container dark-demo">
+        <lib-login 
+          [config]="darkConfig"
+          (loginSuccess)="onLoginSuccess($event)"
+          (loginError)="onLoginError($event)">
+        </lib-login>
+      </div>
+    </section>
+
+    <!-- Custom Theme Demo -->
+    <section class="demo-section">
+      <h2>🎨 Custom Theme</h2>
+      <p>Tema personalizzato con stili CSS custom</p>
+      <div class="demo-container custom-demo">
+        <lib-login 
+          [config]="customConfig"
+          (loginSuccess)="onLoginSuccess($event)"
+          (loginError)="onLoginError($event)">
+        </lib-login>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="demo-footer">
+    <p>💡 <strong>Come testare:</strong></p>
+    <ul>
+      <li>Username: <code>demo&#64;example.com</code></li>
+      <li>Password: <code>password123</code></li>
+      <li>Il backend è simulato - tutti i login falliranno per dimostrare la gestione errori</li>
+    </ul>
+    
+    <div class="demo-info">
+      <h3>🔧 Configurazione</h3>
+      <p>Ogni istanza può essere configurata independentemente:</p>
+      <ul>
+        <li><strong>Temi:</strong> light, dark, custom</li>
+        <li><strong>Etichette:</strong> personalizzabili</li>
+        <li><strong>Funzionalità:</strong> Remember Me, Password dimenticata</li>
+        <li><strong>Stili:</strong> CSS completamente customizzabile</li>
+      </ul>
+    </div>
+  </footer>
+</div>
